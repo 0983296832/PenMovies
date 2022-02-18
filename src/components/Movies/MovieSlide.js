@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MovieSlide = ({ name, type, getType }) => {
+const MovieSlide = ({ name, type, getType, id }) => {
   const classes = useStyles({});
   const [filmType, setFilmType] = useState("");
 
@@ -21,9 +21,9 @@ const MovieSlide = ({ name, type, getType }) => {
     if (getType === "movie") setFilmType("movie");
     if (getType === "tvList") setFilmType("tv");
   }, []);
-  console.log(filmType);
 
-  const { data } = useFetch(getType, type);
+  const { data } = useFetch(getType, type, id);
+  console.log(data);
 
   return (
     <Container className={classes.container} maxWidth="xl">
@@ -40,7 +40,7 @@ const MovieSlide = ({ name, type, getType }) => {
         >
           {name}
         </Typography>
-        <ButtonStyle name="View More" largeBtn="false" />
+        {id ? null : <ButtonStyle name="View More" largeBtn="false" />}
       </Stack>
       <Swiper
         spaceBetween={70}

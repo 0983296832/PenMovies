@@ -3,6 +3,7 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import Logo from "../../assets/tmovie.png";
 import FooterBg from "../../assets/footer-bg.jpg";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   layout: {
@@ -66,17 +67,19 @@ const Footer = () => {
         <Stack>
           <div className={classes.logo}>
             <img src={Logo} atl="Pen Movie" className={classes.imgLogo} />
-            <Typography
-              variant="h6"
-              style={{
-                fontSize: "2.5rem",
-                fontWeight: "600",
-                paddingBottom: "4rem",
-              }}
-              className={classes.name}
-            >
-              PenMovie
-            </Typography>
+            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+              <Typography
+                variant="h6"
+                style={{
+                  fontSize: "2.7rem",
+                  fontWeight: "700",
+                  fontFamily: "Montserrat",
+                }}
+                className={classes.name}
+              >
+                PenMovie
+              </Typography>
+            </Link>
           </div>
           <Grid container>
             <Grid item xs={4}>

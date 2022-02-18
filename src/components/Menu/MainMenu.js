@@ -134,13 +134,19 @@ function MainMenu() {
       <Toolbar className={classes.toolBar}>
         <div className={classes.logo}>
           <img src={Logo} atl="Pen Movie" className={classes.imgLogo} />
-          <Typography
-            variant="h6"
-            style={{ fontSize: "2.5rem", fontWeight: "600" }}
-            className={classes.name}
-          >
-            PenMovie
-          </Typography>
+          <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+            <Typography
+              variant="h6"
+              style={{
+                fontSize: "2.7rem",
+                fontWeight: "700",
+                fontFamily: "Montserrat",
+              }}
+              className={classes.name}
+            >
+              PenMovie
+            </Typography>
+          </Link>
         </div>
 
         <div className={classes.link}>

@@ -38,7 +38,6 @@ const CustomButtonBorder = styled(Button)((props) => ({
 }));
 
 function ButtonStyle({ name, styleBtn, handleOpen, largeBtn, id, category }) {
-  console.log(id);
   if (name === "Watch Now") {
     return (
       <Link to={`/detail/movie/${id}`} style={{ textDecoration: "none" }}>

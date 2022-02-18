@@ -10,12 +10,28 @@ const useStyles = makeStyles((them) => ({
   baner: {
     width: "100%",
     height: "50vh",
-    // backgroundImage:
-    //   'url("https://image.tmdb.org/t/p/original//1Wlwnhn5sXUIwlxpJgWszT622PS.jpg")',
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center",
     position: "absolute",
+    "&::before": {
+      content: '""',
+      position: "absolute",
+      top: "0",
+      left: "0",
+      width: "100%",
+      height: "100%",
+      backgroundColor: "rgba(0, 0, 0, 0.6)",
+    },
+    "&::after": {
+      content: '""',
+      position: "absolute",
+      bottom: "0",
+      left: "0",
+      width: "100%",
+      height: "100px",
+      backgroundImage: "linear-gradient(to top, #0f0f0f, rgba(0, 0, 0, 0))",
+    },
   },
   container: {
     paddingTop: "10rem",
@@ -67,12 +83,15 @@ const DetailContainer = ({ category, id }) => {
   const bg = useRef();
 
   const [movie, setMovie] = useState(null);
+  const [casts, setCasts] = useState([]);
 
   useEffect(() => {
     const getDetail = async () => {
-      const response = await tmdbApi.detail(category, id, { params: {} });
-      bg.current.style.backgroundImage = `url("https://image.tmdb.org/t/p/original${response.backdrop_path}")`;
-      setMovie(response);
+      const movieRes = await tmdbApi.detail(category, id, { params: {} });
+      const castRes = await tmdbApi.credits(category, id);
+      bg.current.style.backgroundImage = `url("https://image.tmdb.org/t/p/original${movieRes.backdrop_path}")`;
+      setMovie(movieRes);
+      setCasts(castRes.cast.slice(0, 5));
 
       window.scrollTo(0, 0);
     };
@@ -102,13 +121,15 @@ const DetailContainer = ({ category, id }) => {
               sx={{ fontWeight: 700, fontSize: "4.1rem" }}
             >
               {movie ? movie.original_title : null}
-              hi
             </Typography>
             <Stack spacing={2} direction="row" sx={{ paddingBottom: "2rem" }}>
-              <CustomButtonBorder>action</CustomButtonBorder>
-              <CustomButtonBorder>action</CustomButtonBorder>
-              <CustomButtonBorder>action</CustomButtonBorder>
-              <CustomButtonBorder>action</CustomButtonBorder>
+              {movie
+                ? movie?.genres?.map((item, index) => (
+                    <CustomButtonBorder key={index}>
+                      {item.name}
+                    </CustomButtonBorder>
+                  ))
+                : null}
             </Stack>
             <Typography
               variant="body1"
@@ -123,15 +144,21 @@ const DetailContainer = ({ category, id }) => {
               {movie ? movie.overview : null}
             </Typography>
             <Stack direction="row" spacing={1.5}>
-              <div className={classes.castcontainer}>
-                <img
-                  src="https://image.tmdb.org/t/p/w500//i8CQIAEAjkieDIA88b4gh122h8s.jpg"
-                  alt=""
-                  width="96px"
-                  style={{ marginBottom: "15px" }}
-                />
-                <Typography variant="p">Piter pen</Typography>
-              </div>
+              {casts?.map((cast) => {
+                return (
+                  <div className={classes.castcontainer} key={cast.id}>
+                    <img
+                      src={cast ? apiConfig.w500Image(cast.profile_path) : null}
+                      alt=""
+                      width="96px"
+                      style={{ marginBottom: "15px" }}
+                    />
+                    <Typography variant="p" sx={{ maxWidth: " 96px" }}>
+                      {cast ? cast.name : null}
+                    </Typography>
+                  </div>
+                );
+              })}
             </Stack>
           </Grid>
         </Grid>

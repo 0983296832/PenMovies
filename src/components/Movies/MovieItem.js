@@ -63,7 +63,6 @@ const useStyles = makeStyles((theme) => ({
 const MovieItem = ({ movie, category }) => {
   const classes = useStyles({});
   const [check, setCheck] = useState(false);
-  console.log(category);
 
   return (
     <div className={classes.container}>
