@@ -15,6 +15,16 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  containerLarge: {
+    width: "240px",
+    height: "auto",
+    marginTop: "1rem",
+    "&:hover ": {
+      "& $name": {
+        color: "#ff0000",
+      },
+    },
+  },
   imgcontainer: {
     position: "relative",
     "&:hover ": {
@@ -53,6 +63,15 @@ const useStyles = makeStyles((theme) => ({
       cursor: "pointer",
     },
   },
+  imageLarge: {
+    objectFit: "cover",
+    borderRadius: "30px",
+    width: "240px",
+    height: "360px",
+    "&:hover": {
+      cursor: "pointer",
+    },
+  },
   name: {
     "&:hover": {
       color: "#ff0000",
@@ -60,12 +79,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-const MovieItem = ({ movie, category }) => {
+const MovieItem = ({ movie, category, largeItem }) => {
   const classes = useStyles({});
   const [check, setCheck] = useState(false);
 
   return (
-    <div className={classes.container}>
+    <div
+      className={
+        largeItem === "true" ? classes.containerLarge : classes.container
+      }
+    >
       <div
         className={classes.imgcontainer}
         onMouseOver={() => setCheck(true)}
@@ -73,7 +96,7 @@ const MovieItem = ({ movie, category }) => {
       >
         <img
           src={apiConfig.originalImage(movie.poster_path)}
-          className={classes.image}
+          className={largeItem === "true" ? classes.imageLarge : classes.image}
           alt={movie.original_title || movie.name}
         />
         <div className={classes.play}>

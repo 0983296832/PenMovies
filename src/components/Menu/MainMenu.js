@@ -119,7 +119,7 @@ function MainMenu() {
   const [show, setShow] = useState(false);
 
   window.addEventListener("scroll", () => {
-    window.scrollY > 200 ? setShow(true) : setShow(false);
+    window.scrollY > 150 ? setShow(true) : setShow(false);
   });
 
   return (
@@ -153,12 +153,12 @@ function MainMenu() {
           <Link to="/" className={classes.item}>
             Home
           </Link>
-          <a href="#" className={classes.item}>
+          <Link to="/movie" className={classes.item}>
             Movies
-          </a>
-          <a href="#" className={classes.item}>
+          </Link>
+          <Link to="/tv" className={classes.item}>
             TV Series
-          </a>
+          </Link>
         </div>
         <div className={classes.menuBar}>
           <MenuIcon onClick={handleOpen} style={{ fontSize: "2rem" }} />
@@ -171,12 +171,12 @@ function MainMenu() {
               <Link to="/" className={classes.item}>
                 Home
               </Link>
-              <a href="#" className={classes.item}>
+              <Link to="/movie" className={classes.item}>
                 Movies
-              </a>
-              <a href="#" className={classes.item}>
+              </Link>
+              <Link to="/tv" className={classes.item}>
                 TV Series
-              </a>
+              </Link>
               <CloseIcon
                 style={{
                   color: "white",

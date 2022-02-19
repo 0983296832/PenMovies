@@ -15,15 +15,8 @@ const useStyles = makeStyles((theme) => ({
 
 const MovieSlide = ({ name, type, getType, id }) => {
   const classes = useStyles({});
-  const [filmType, setFilmType] = useState("");
-
-  useEffect(() => {
-    if (getType === "movie") setFilmType("movie");
-    if (getType === "tvList") setFilmType("tv");
-  }, []);
 
   const { data } = useFetch(getType, type, id);
-  console.log(data);
 
   return (
     <Container className={classes.container} maxWidth="xl">
@@ -51,7 +44,7 @@ const MovieSlide = ({ name, type, getType, id }) => {
         {data?.map((movie, index) => {
           return (
             <SwiperSlide key={index} style={{ marginRight: "70px" }}>
-              <MovieItem movie={movie} category={filmType} />
+              <MovieItem movie={movie} category={getType} largeItem="false" />
             </SwiperSlide>
           );
         })}

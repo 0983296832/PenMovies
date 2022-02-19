@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Hero from "../../components/Hero/Hero";
 import MovieSlide from "../../components/Movies/MovieSlide";
-import {movieType, tvType} from '../../api/tmdbApi'
+import { movieType, tvType } from "../../api/tmdbApi";
 
 const HomePage = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <>
       <Hero />
@@ -17,12 +20,8 @@ const HomePage = () => {
         getType="movie"
         type={movieType.top_rated}
       />
-      <MovieSlide name="Trending TV" getType="tvList" type={tvType.popular} />
-      <MovieSlide
-        name="Top Rated TV"
-        getType="tvList"
-        type={tvType.top_rated}
-      />
+      <MovieSlide name="Trending TV" getType="tv" type={tvType.popular} />
+      <MovieSlide name="Top Rated TV" getType="tv" type={tvType.top_rated} />
     </>
   );
 };

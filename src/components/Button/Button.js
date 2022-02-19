@@ -4,13 +4,14 @@ import { styled } from "@mui/material/styles";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { Link } from "react-router-dom";
 
-const CustomButtonRed = styled(Button)({
+const CustomButtonRed = styled(Button)((props) => ({
+  type: `${props.type === "submit" ? "submit" : ""}`,
   border: "4px solid transparent",
   backgroundColor: "#ff0000",
   color: "#fff",
   borderRadius: "30px",
-  padding: "0.5rem 1.8rem",
-  fontSize: "1.5rem",
+  padding: `${props.large === "true" ? "0.5rem 1.8rem" : "0.1rem 1.5rem"}`,
+  fontSize: `${props.large === "true" ? "1.5rem" : ".9rem"}`,
   fontWeight: "600",
   boxShadow: "0px 0px 7px 8px #ff00004d",
   transition: "box-shadow 0.3s ease",
@@ -19,7 +20,7 @@ const CustomButtonRed = styled(Button)({
     backgroundColor: "#ff0000",
     boxShadow: "0px 0px 7px 15px #ff00004d;",
   },
-});
+}));
 
 const CustomButtonBorder = styled(Button)((props) => ({
   border: `${props.large === "true" ? "4px solid #fff" : "2px solid #fff"}`,
@@ -41,7 +42,7 @@ function ButtonStyle({ name, styleBtn, handleOpen, largeBtn, id, category }) {
   if (name === "Watch Now") {
     return (
       <Link to={`/detail/movie/${id}`} style={{ textDecoration: "none" }}>
-        <CustomButtonRed>{name}</CustomButtonRed>
+        <CustomButtonRed large={largeBtn}>{name}</CustomButtonRed>
       </Link>
     );
   } else if (styleBtn) {
@@ -52,6 +53,8 @@ function ButtonStyle({ name, styleBtn, handleOpen, largeBtn, id, category }) {
         </CustomButtonRed>
       </Link>
     );
+  } else if (name === "Search") {
+    return <CustomButtonRed type="submit">{name}</CustomButtonRed>;
   } else {
     return (
       <CustomButtonBorder onClick={handleOpen} large={largeBtn}>

@@ -111,7 +111,7 @@ const HeroItem = ({ movie }) => {
               {movie.overview}
             </Typography>
             <Stack spacing={2} direction="row">
-              <ButtonStyle name="Watch Now" id={movie.id} />
+              <ButtonStyle name="Watch Now" id={movie.id} largeBtn="true" />
               <ButtonStyle
                 name="Watch Trailer"
                 handleOpen={handleOpen}

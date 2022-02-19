@@ -5,7 +5,6 @@ import Footer from "../components/Footer/Footer";
 import HomePage from "../pages/HomePage/HomePage";
 import DetailPage from "../pages/DetailPage/DetailPage";
 import MoviesCategory from "../pages/MoviesCategory/MoviesCategory";
-import TVSeriesCategory from "../pages/TVSeriesCategory/TVSeriesCategory";
 
 const rootRoute = () => {
   return (
@@ -14,8 +13,8 @@ const rootRoute = () => {
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route path="/detail/:category/:id" element={<DetailPage />} />
-        <Route path="/movies/search" element={<MoviesCategory />} />
-        <Route path="/tvlist/search" element={<TVSeriesCategory />} />
+        <Route path="/:category" element={<MoviesCategory />} />
+        <Route path="/:category" element={<MoviesCategory />} />
       </Routes>
       <Footer />
     </BrowserRouter>
