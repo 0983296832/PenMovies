@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import MoviesGird from "../../components/MoviesGrid/MoviesGird";
 import { makeStyles } from "@mui/styles";
 import FooterBg from "../../assets/footer-bg.jpg";
 import { Container, Stack, Typography } from "@mui/material";
 import ButtonStyle from "../../components/Button/Button";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import useFetch from "../../hook/useFetch";
+import tmdbApi from "../../api/tmdbApi";
 
 const useStyles = makeStyles((them) => ({
   baner: {
@@ -61,7 +63,68 @@ const useStyles = makeStyles((them) => ({
 
 const MoviesCategory = () => {
   const classes = useStyles({});
-  const { category } = useParams();
+  const { category, keyword } = useParams();
+  const [pages, setPages] = useState(1);
+  const [searchMovies, setSearchMovies] = useState();
+  const { data, loading, setData } = useFetch(
+    category,
+    category === "movie" ? "upcoming" : "top_rated",
+    null
+  );
+  const [keyWords, setKeyWords] = useState("");
+
+  useEffect(() => {
+    const getMovieSearch = async () => {
+      let response = null;
+      const params = {
+        query: keyword,
+        page: pages,
+      };
+      const res = await tmdbApi.search(category, { params });
+      setSearchMovies(res.results);
+    };
+    if (keyword !== undefined) {
+      getMovieSearch();
+    }
+  }, [keyword]);
+  console.log(searchMovies);
+  let navigate = useNavigate();
+
+  const loadMore = () => {
+    setPages((prev) => prev + 1);
+  };
+
+  const getMore = async () => {
+    let res = null;
+
+    if (category === "movie" && keyword === undefined) {
+      const params = {
+        page: pages + 1,
+      };
+      res = await tmdbApi.getMoviesList("upcoming", { params });
+      setData([...data, res.results].flat());
+    } else if (category === "tv" && keyword === undefined) {
+      const params = {
+        page: pages + 1,
+      };
+      res = await tmdbApi.getTvList("top_rated", { params });
+      setData([...data, res.results].flat());
+    } else if (keyword !== undefined) {
+      const params = {
+        page: pages + 1,
+        query: keyword,
+      };
+      res = await tmdbApi.search(category, { params });
+      setSearchMovies([...searchMovies, res.results].flat());
+    }
+  };
+
+  const handleSearch = () => {
+    setKeyWords("");
+    if (keyWords !== "") {
+      navigate(`/${category}/search/${keyWords}`);
+    }
+  };
 
   return (
     <div>
@@ -85,22 +148,38 @@ const MoviesCategory = () => {
               <div className={classes.searchContainer}>
                 <input
                   type="text"
-                  placeholder="Type somthing ......."
+                  placeholder="Type something ......."
                   id="search"
                   name="search"
                   className={classes.search}
+                  onChange={(e) => setKeyWords(e.target.value)}
+                  value={keyWords}
                 />
                 <div className={classes.searchBtn}>
-                  <ButtonStyle name="Search" large="false" />
+                  <ButtonStyle
+                    name="Search"
+                    large="false"
+                    handleSearch={handleSearch}
+                  />
                 </div>
               </div>
             </form>
           </Stack>
           <MoviesGird
+            movies={keyword === undefined ? data : searchMovies}
+            loading={loading}
             category={category}
-            type={category === "movie" ? "upcoming" : "top_rated"}
+            keyWords={keyWords}
           />
         </div>
+        <Stack spacing={2} alignItems="center" sx={{ marginTop: "2rem" }}>
+          <ButtonStyle
+            name="Load More"
+            largeBtn="false"
+            loadMore={loadMore}
+            getMore={getMore}
+          />
+        </Stack>
       </Container>
     </div>
   );

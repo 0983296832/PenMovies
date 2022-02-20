@@ -30,7 +30,7 @@ const useFetch = (getType, type, id) => {
 
     data && getMovies(type);
   }, [getType]);
-  return { data, loading };
+  return { data, loading, setData };
 };
 
 export default useFetch;

@@ -13,8 +13,6 @@ const useStyles = makeStyles((theme) => ({
   container: {
     position: "relative",
     padding: "9rem 0",
-    // backgroundImage:
-    //   'url("https://image.tmdb.org/t/p/original/3G1Q5xF40HkUBJXxt2DQgQzKTp5.jpg")',
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
@@ -43,6 +41,9 @@ const useStyles = makeStyles((theme) => ({
   },
   gridItemLeft: {
     zIndex: "10",
+    [theme.breakpoints.down("lg")]: {
+      width: "80vw",
+    },
   },
   title: {
     fontWeight: "700",
@@ -55,6 +56,10 @@ const useStyles = makeStyles((theme) => ({
   imageContain: {
     width: "400px",
     marginLeft: "2rem",
+    display: "block",
+    [theme.breakpoints.down("lg")]: {
+      display: "none",
+    },
   },
   img: {
     objectFit: "cover",
@@ -93,19 +98,35 @@ const HeroItem = ({ movie }) => {
     <div className={classes.container} ref={bgRef}>
       <Container maxWidth="xl">
         <Grid container spacing={6}>
-          <Grid item xs={6} className={classes.gridItemLeft} p={2}>
+          <Grid
+            item
+            lg={6}
+            className={classes.gridItemLeft}
+            p={2}
+            sm={8}
+            md={8}
+          >
             <Typography
               variant="h1"
               className={classes.title}
               gutterBottom
-              sx={{ fontWeight: 700, marginTop: "5rem" }}
+              sx={{
+                fontWeight: 700,
+                marginTop: "5rem",
+                fontFamily: "Montserrat",
+              }}
+              // md={{ fontWeight: 600, fontSize: "3.5rem" }}
             >
               {movie.original_title}
             </Typography>
             <Typography
               variant="body1"
               gutterBottom
-              sx={{ fontWeight: 600, paddingBottom: "2rem" }}
+              sx={{
+                fontWeight: 600,
+                paddingBottom: "2rem",
+                fontFamily: "Montserrat",
+              }}
               className={classes.overview}
             >
               {movie.overview}
@@ -119,7 +140,7 @@ const HeroItem = ({ movie }) => {
               />
             </Stack>
           </Grid>
-          <Grid item xs={6} style={{ zIndex: "10" }}>
+          <Grid item lg={6} style={{ zIndex: "10" }}>
             <div className={classes.imageContain}>
               <img
                 src={apiConfig.originalImage(movie.poster_path)}

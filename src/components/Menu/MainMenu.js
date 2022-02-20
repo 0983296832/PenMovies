@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: "#ff0000",
       left: "50%",
       transform: "translateX(-50%)",
-      bottom: "37px",
+      bottom: "45px",
       transformOrigin: "center",
       transition: " all .25s ease",
     },
@@ -82,6 +82,21 @@ const useStyles = makeStyles((theme) => ({
     },
     "&:hover:before": {
       width: "100%",
+    },
+  },
+  active: {
+    color: "#ff0000",
+    position: "relative",
+    "&::before": {
+      content: '""',
+      position: "absolute",
+      height: "3px",
+      width: "100%",
+      backgroundColor: "#ff0000",
+      left: "0",
+      bottom: "45px",
+      left: "50%",
+      transform: "translateX(-50%)",
     },
   },
   menuBar: {
@@ -117,6 +132,7 @@ function MainMenu() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [show, setShow] = useState(false);
+  const [indexActive, setIndexActive] = useState(1);
 
   window.addEventListener("scroll", () => {
     window.scrollY > 150 ? setShow(true) : setShow(false);
@@ -133,7 +149,7 @@ function MainMenu() {
     >
       <Toolbar className={classes.toolBar}>
         <div className={classes.logo}>
-          <img src={Logo} atl="Pen Movie" className={classes.imgLogo} />
+          <img src={Logo} atl="PenMovie" className={classes.imgLogo} />
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <Typography
               variant="h6"
@@ -150,13 +166,25 @@ function MainMenu() {
         </div>
 
         <div className={classes.link}>
-          <Link to="/" className={classes.item}>
+          <Link
+            to="/"
+            className={`${classes.item} ${indexActive === 1 && classes.active}`}
+            onClick={() => setIndexActive(1)}
+          >
             Home
           </Link>
-          <Link to="/movie" className={classes.item}>
+          <Link
+            to="/movie"
+            className={`${classes.item} ${indexActive === 2 && classes.active}`}
+            onClick={() => setIndexActive(2)}
+          >
             Movies
           </Link>
-          <Link to="/tv" className={classes.item}>
+          <Link
+            to="/tv"
+            className={`${classes.item} ${indexActive === 3 && classes.active}`}
+            onClick={() => setIndexActive(3)}
+          >
             TV Series
           </Link>
         </div>
@@ -168,13 +196,13 @@ function MainMenu() {
         <Modal open={open}>
           <Box className={classes.modal}>
             <div className={classes.linkList}>
-              <Link to="/" className={classes.item}>
+              <Link to="/" className={classes.item} onClick={handleClose}>
                 Home
               </Link>
-              <Link to="/movie" className={classes.item}>
+              <Link to="/movie" className={classes.item} onClick={handleClose}>
                 Movies
               </Link>
-              <Link to="/tv" className={classes.item}>
+              <Link to="/tv" className={classes.item} onClick={handleClose}>
                 TV Series
               </Link>
               <CloseIcon

@@ -1,11 +1,12 @@
 import { Container, Stack, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import MovieItem from "./MovieItem";
 import { makeStyles } from "@mui/styles";
 import ButtonStyle from "../Button/Button";
 
 import useFetch from "../../hook/useFetch";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -33,13 +34,36 @@ const MovieSlide = ({ name, type, getType, id }) => {
         >
           {name}
         </Typography>
-        {id ? null : <ButtonStyle name="View More" largeBtn="false" />}
+        <Link to={`/${getType}`} style={{ textDecoration: "none" }}>
+          {id ? null : <ButtonStyle name="View More" largeBtn="false" />}
+        </Link>
       </Stack>
       <Swiper
         spaceBetween={70}
-        slidesPerView={6.5}
-        // onSlideChange={() => console.log("slide change")}
-        // onSwiper={(swiper) => console.log(swiper)}
+        breakpoints={{
+          // when window width is >= 640px
+          400: {
+            slidesPerView: 2,
+          },
+          450: {
+            slidesPerView: 2.5,
+          },
+          600: {
+            slidesPerView: 3.2,
+          },
+          700: {
+            slidesPerView: 3.5,
+          },
+          800: {
+            slidesPerView: 4,
+          },
+          900: {
+            slidesPerView: 4.5,
+          },
+          1024: {
+            slidesPerView: 6.5,
+          },
+        }}
       >
         {data?.map((movie, index) => {
           return (

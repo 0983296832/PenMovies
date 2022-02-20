@@ -16,6 +16,9 @@ const CustomButtonRed = styled(Button)((props) => ({
   boxShadow: "0px 0px 7px 8px #ff00004d",
   transition: "box-shadow 0.3s ease",
   textTransform: "capitalize",
+  [props.theme.breakpoints.down("lg")]: {
+    fontSize: `1rem`,
+  },
   "&:hover": {
     backgroundColor: "#ff0000",
     boxShadow: "0px 0px 7px 15px #ff00004d;",
@@ -29,6 +32,9 @@ const CustomButtonBorder = styled(Button)((props) => ({
   borderRadius: "30px",
   padding: `${props.large === "true" ? "0.5rem 1.8rem" : "0.25rem 1rem"}`,
   fontSize: `${props.large === "true" ? "1.5rem" : "1rem"}`,
+  [props.theme.breakpoints.down("lg")]: {
+    fontSize: "1rem",
+  },
   fontWeight: "600",
   transition: "all 0.3s ease",
   textTransform: "capitalize",
@@ -38,7 +44,21 @@ const CustomButtonBorder = styled(Button)((props) => ({
   },
 }));
 
-function ButtonStyle({ name, styleBtn, handleOpen, largeBtn, id, category }) {
+function ButtonStyle({
+  name,
+  styleBtn,
+  handleOpen,
+  largeBtn,
+  id,
+  category,
+  loadMore,
+  getMore,
+  handleSearch,
+}) {
+  const handleLoadMore = () => {
+    loadMore();
+    getMore();
+  };
   if (name === "Watch Now") {
     return (
       <Link to={`/detail/movie/${id}`} style={{ textDecoration: "none" }}>
@@ -54,7 +74,13 @@ function ButtonStyle({ name, styleBtn, handleOpen, largeBtn, id, category }) {
       </Link>
     );
   } else if (name === "Search") {
-    return <CustomButtonRed type="submit">{name}</CustomButtonRed>;
+    return <CustomButtonRed onClick={handleSearch}>{name}</CustomButtonRed>;
+  } else if (name === "Load More") {
+    return (
+      <CustomButtonBorder type="submit" onClick={handleLoadMore}>
+        {name}
+      </CustomButtonBorder>
+    );
   } else {
     return (
       <CustomButtonBorder onClick={handleOpen} large={largeBtn}>

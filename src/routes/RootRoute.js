@@ -14,6 +14,7 @@ const rootRoute = () => {
         <Route exact path="/" element={<HomePage />} />
         <Route path="/detail/:category/:id" element={<DetailPage />} />
         <Route path="/:category" element={<MoviesCategory />} />
+        <Route path="/:category/search/:keyword" element={<MoviesCategory />} />
         <Route path="/:category" element={<MoviesCategory />} />
       </Routes>
       <Footer />
