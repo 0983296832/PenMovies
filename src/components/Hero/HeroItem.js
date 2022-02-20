@@ -74,6 +74,9 @@ const useStyles = makeStyles((theme) => ({
     transform: "translate(-50%, -50%)",
     border: "2px solid #000",
     p: 4,
+
+    // width: "900px",
+    // height: "500px",
   },
 }));
 
@@ -115,6 +118,13 @@ const HeroItem = ({ movie }) => {
                 marginTop: "5rem",
                 fontFamily: "Montserrat",
               }}
+              fontSize={{
+                xl: 130,
+                lg: 100,
+                md: 100,
+                sm: 70,
+                xs: 50,
+              }}
               // md={{ fontWeight: 600, fontSize: "3.5rem" }}
             >
               {movie.original_title}
@@ -126,6 +136,13 @@ const HeroItem = ({ movie }) => {
                 fontWeight: 600,
                 paddingBottom: "2rem",
                 fontFamily: "Montserrat",
+              }}
+              fontSize={{
+                xl: 30,
+                lg: 30,
+                md: 30,
+                sm: 20,
+                xs: 15,
               }}
               className={classes.overview}
             >
@@ -166,9 +183,8 @@ const HeroItem = ({ movie }) => {
           <Fade in={open}>
             <div className={classes.trailer}>
               <iframe
-                width="900px"
-                height="500px"
                 title="trailer"
+                allowfullscreen
                 src={`https://www.youtube.com/embed/${video}`}
               ></iframe>
             </div>

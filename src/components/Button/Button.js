@@ -19,6 +19,9 @@ const CustomButtonRed = styled(Button)((props) => ({
   [props.theme.breakpoints.down("lg")]: {
     fontSize: `1rem`,
   },
+  [props.theme.breakpoints.up("sx")]: {
+    fontSize: `.3rem`,
+  },
   "&:hover": {
     backgroundColor: "#ff0000",
     boxShadow: "0px 0px 7px 15px #ff00004d;",
@@ -34,6 +37,9 @@ const CustomButtonBorder = styled(Button)((props) => ({
   fontSize: `${props.large === "true" ? "1.5rem" : "1rem"}`,
   [props.theme.breakpoints.down("lg")]: {
     fontSize: "1rem",
+  },
+  [props.theme.breakpoints.up("sx")]: {
+    fontSize: `.3rem`,
   },
   fontWeight: "600",
   transition: "all 0.3s ease",

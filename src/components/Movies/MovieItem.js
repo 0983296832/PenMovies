@@ -19,6 +19,12 @@ const useStyles = makeStyles((theme) => ({
     width: "240px",
     height: "auto",
     marginTop: "1rem",
+    [theme.breakpoints.down("lg")]: {
+      width: "300px",
+    },
+    [theme.breakpoints.up("sm")]: {
+      marginRight: "2rem",
+    },
     "&:hover ": {
       "& $name": {
         color: "#ff0000",
@@ -68,6 +74,15 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "30px",
     width: "240px",
     height: "360px",
+    [theme.breakpoints.down("md")]: {
+      width: "270px",
+      height: "400px",
+    },
+    [theme.breakpoints.up("md")]: {
+      width: "240px",
+      height: "360px",
+      marginRight: "2rem",
+    },
     "&:hover": {
       cursor: "pointer",
     },

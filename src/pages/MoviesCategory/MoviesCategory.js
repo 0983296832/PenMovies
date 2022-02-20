@@ -8,7 +8,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import useFetch from "../../hook/useFetch";
 import tmdbApi from "../../api/tmdbApi";
 
-const useStyles = makeStyles((them) => ({
+const useStyles = makeStyles((theme) => ({
   baner: {
     width: "100%",
     height: "30vh",
@@ -38,6 +38,12 @@ const useStyles = makeStyles((them) => ({
   },
   container: {
     paddingTop: "8rem",
+    [theme.breakpoints.down("sm")]: {
+      marginLeft: "2rem",
+    },
+    [theme.breakpoints.down("md")]: {
+      marginLeft: "2rem",
+    },
   },
   searchContainer: {
     position: "relative",
@@ -53,6 +59,12 @@ const useStyles = makeStyles((them) => ({
     fontSize: "1rem",
     fontFamily: "Montserrat",
     color: "white",
+    [theme.breakpoints.down("md")]: {
+      width: "500px",
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "280px",
+    },
   },
   searchBtn: {
     position: "absolute",

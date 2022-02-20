@@ -42,26 +42,45 @@ const MovieSlide = ({ name, type, getType, id }) => {
         spaceBetween={70}
         breakpoints={{
           // when window width is >= 640px
-          400: {
+
+          320: {
+            slidesPerView: 1.7,
+          },
+          375: {
             slidesPerView: 2,
+          },
+          425: {
+            slidesPerView: 2.15,
           },
           450: {
             slidesPerView: 2.5,
           },
+          520: {
+            slidesPerView: 2.7,
+          },
           600: {
+            slidesPerView: 2.9,
+          },
+          648: {
+            slidesPerView: 3,
+          },
+          732: {
             slidesPerView: 3.2,
           },
-          700: {
-            slidesPerView: 3.5,
+          768: {
+            slidesPerView: 3.7,
           },
           800: {
             slidesPerView: 4,
           },
           900: {
-            slidesPerView: 4.5,
+            slidesPerView: 5,
           },
           1024: {
             slidesPerView: 6.5,
+          },
+          1440: {
+            slidesPerView: 7,
           },
         }}
       >

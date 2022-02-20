@@ -6,7 +6,7 @@ import { useRef, useEffect, useState } from "react";
 import apiConfig from "../../api/apiConfig";
 import tmdbApi from "../../api/tmdbApi";
 
-const useStyles = makeStyles((them) => ({
+const useStyles = makeStyles((theme) => ({
   baner: {
     width: "100%",
     height: "50vh",
@@ -49,6 +49,9 @@ const useStyles = makeStyles((them) => ({
     width: "400px",
     marginLeft: "2rem",
     objectFit: "cover",
+    [theme.breakpoints.down("lg")]: {
+      width: "350px",
+    },
   },
   img: {
     objectFit: "cover",
@@ -103,7 +106,7 @@ const DetailContainer = ({ category, id }) => {
       <div className={classes.baner} ref={bg}></div>
       <Container maxWidth="xl" className={classes.container}>
         <Grid container spacing={10}>
-          <Grid item xs={4} style={{ zIndex: "10" }}>
+          <Grid item lg={4} style={{ zIndex: "10" }}>
             <div className={classes.imageContain}>
               <img
                 src={movie ? apiConfig.originalImage(movie.poster_path) : ""}
@@ -113,7 +116,7 @@ const DetailContainer = ({ category, id }) => {
             </div>
           </Grid>
 
-          <Grid item xs={8} className={classes.gridItemLeft} p={2}>
+          <Grid item lg={8} className={classes.gridItemLeft} p={2}>
             <Typography
               variant="h1"
               className={classes.title}

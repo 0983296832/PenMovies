@@ -154,9 +154,14 @@ function MainMenu() {
             <Typography
               variant="h6"
               style={{
-                fontSize: "2.7rem",
                 fontWeight: "700",
                 fontFamily: "Montserrat",
+              }}
+              sx={{
+                fontSize: {
+                  sm: 40,
+                  xs: 25,
+                },
               }}
               className={classes.name}
             >
