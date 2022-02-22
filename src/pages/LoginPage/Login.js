@@ -9,7 +9,6 @@ import bg from "../../assets/footer-bg.jpg";
 const Login = () => {
   let navigate = useNavigate();
   const user = useSelector((state) => state.user);
-  console.log(user);
   useEffect(() => {
     user.displayName !== "" && navigate("/");
   }, [user.displayName]);

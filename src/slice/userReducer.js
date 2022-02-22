@@ -19,7 +19,6 @@ export const login = createAsyncThunk("login/getUser", async () => {
   return result.user;
 });
 export const logout = createAsyncThunk("logout", () => {
-  console.log("logout");
   signOut(auth).then(() => {
     toast.success("🦄 Logout successfully!", {
       position: "top-right",
@@ -58,11 +57,17 @@ export const userSlice = createSlice({
       state.email = "";
       state.photoURL = "";
     },
+    [logout.pending]: (state) => {
+      state.status = "loading";
+    },
     [logout.fulfilled]: (state) => {
       state.displayName = "";
       state.email = "";
       state.photoURL = "";
       state.status = "";
+    },
+    [login.rejected]: (state) => {
+      state.status = "failed";
     },
   },
 });

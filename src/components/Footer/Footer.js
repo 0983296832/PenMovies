@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 const useStyles = makeStyles((theme) => ({
   layout: {
     marginTop: "4rem",
-    // backgroundImage: `url(.${FooterBg})`,
     backgroundImage: `url(https://res.cloudinary.com/binh130490/image/upload/v1645531552/footer-bg_pgorra.jpg)`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
@@ -44,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "600",
     fontSize: "1rem",
     [theme.breakpoints.down("md")]: {
-      display: "none",
+      alignItems: "center",
     },
   },
   item: {
@@ -57,6 +56,11 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       color: "#ff0000",
       cursor: "pointer",
+    },
+  },
+  display: {
+    [theme.breakpoints.down("md")]: {
+      display: "none",
     },
   },
 }));
@@ -87,8 +91,8 @@ const Footer = () => {
               </Typography>
             </Link>
           </div>
-          <Grid container>
-            <Grid item xs={4}>
+          <Grid container style={{ marginTop: "2rem" }}>
+            <Grid item md={4} xs={12}>
               <Stack spacing={2} direction="column">
                 <div className={classes.link}>
                   <a href="#" className={classes.item}>
@@ -106,36 +110,40 @@ const Footer = () => {
                 </div>
               </Stack>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item md={4} xs={0}>
               <Stack spacing={2} direction="column">
-                <div className={classes.link}>
-                  <a href="#" className={classes.item}>
-                    Live
-                  </a>
-                  <a href="#" className={classes.item}>
-                    FAQ
-                  </a>
-                  <a href="#" className={classes.item}>
-                    Premium
-                  </a>
-                  <a href="#" className={classes.item}>
-                    Pravacy policy
-                  </a>
+                <div className={classes.display}>
+                  <div className={classes.link}>
+                    <a href="#" className={classes.item}>
+                      Live
+                    </a>
+                    <a href="#" className={classes.item}>
+                      FAQ
+                    </a>
+                    <a href="#" className={classes.item}>
+                      Premium
+                    </a>
+                    <a href="#" className={classes.item}>
+                      Pravacy policy
+                    </a>
+                  </div>
                 </div>
               </Stack>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item md={4} xs={0}>
               <Stack spacing={2} direction="column">
-                <div className={classes.link}>
-                  <a href="#" className={classes.item}>
-                    You must watch
-                  </a>
-                  <a href="#" className={classes.item}>
-                    Recent release
-                  </a>
-                  <a href="#" className={classes.item}>
-                    Top IMDB
-                  </a>
+                <div className={classes.display}>
+                  <div className={classes.link}>
+                    <a href="#" className={classes.item}>
+                      You must watch
+                    </a>
+                    <a href="#" className={classes.item}>
+                      Recent release
+                    </a>
+                    <a href="#" className={classes.item}>
+                      Top IMDB
+                    </a>
+                  </div>
                 </div>
               </Stack>
             </Grid>

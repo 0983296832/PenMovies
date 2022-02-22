@@ -107,7 +107,7 @@ const HeroItem = ({ movie }) => {
   useEffect(() => {
     const getVideos = async () => {
       const videos = await tmdbApi.getVideos(category.movie, movie.id);
-      setVideo(videos.results[0].key);
+      setVideo(videos.results[0]?.key);
     };
     getVideos();
     bgRef.current.style.backgroundImage = `url("https://image.tmdb.org/t/p/original${movie.backdrop_path}")`;
@@ -141,7 +141,6 @@ const HeroItem = ({ movie }) => {
                 sm: 70,
                 xs: 50,
               }}
-              // md={{ fontWeight: 600, fontSize: "3.5rem" }}
             >
               {movie.original_title}
             </Typography>

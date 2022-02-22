@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -100,7 +100,6 @@ const useStyles = makeStyles((theme) => ({
       height: "3px",
       width: "100%",
       backgroundColor: "#ff0000",
-      left: "0",
       bottom: "45px",
       left: "50%",
       transform: "translateX(-50%)",
@@ -159,11 +158,16 @@ function MainMenu() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [indexActive, setIndexActive] = useState(1);
+  const [show, setShow] = useState(false);
   const handleClose = (index) => {
     setIndexActive(index);
     setOpen(false);
   };
-  const [show, setShow] = useState(false);
+
+  const handleLogOut = () => {
+    setOpen(false);
+    dispatch(logout());
+  };
 
   window.addEventListener("scroll", () => {
     window.scrollY > 150 ? setShow(true) : setShow(false);
@@ -226,18 +230,21 @@ function MainMenu() {
           >
             TV Series
           </Link>
-          <Link
-            to="/login"
-            className={classes.item}
-            onClick={() => dispatch(logout())}
-          >
+          <Link to="/login" className={classes.item} onClick={handleLogOut}>
             Log Out
           </Link>
         </div>
         <div className={classes.menuBar}>
-          <MenuIcon onClick={handleOpen} style={{ fontSize: "2rem" }} />
+          <MenuIcon
+            onClick={handleOpen}
+            style={{
+              fontSize: "2rem",
+              display: `${user.displayName === "" ? "none" : ""}`,
+            }}
+          />
         </div>
       </Toolbar>
+
       <div>
         <Modal open={open} className={classes.modal}>
           <Box className={classes.box}>
@@ -269,11 +276,7 @@ function MainMenu() {
               >
                 TV Series
               </Link>
-              <Link
-                to="/login"
-                className={classes.item}
-                onClick={() => dispatch(logout())}
-              >
+              <Link to="/login" className={classes.item} onClick={handleLogOut}>
                 Log Out
               </Link>
               <CloseIcon
