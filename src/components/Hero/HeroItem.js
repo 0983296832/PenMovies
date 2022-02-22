@@ -75,8 +75,24 @@ const useStyles = makeStyles((theme) => ({
     border: "2px solid #000",
     p: 4,
 
-    // width: "900px",
-    // height: "500px",
+    width: "900px",
+    height: "500px",
+    [theme.breakpoints.between("md", "mg")]: {
+      width: "600px",
+      height: "400px",
+    },
+    [theme.breakpoints.between("sm", "md")]: {
+      width: "500px",
+      height: "400px",
+    },
+    [theme.breakpoints.between("xm", "sm")]: {
+      width: "400px",
+      height: "300px",
+    },
+    [theme.breakpoints.between("xs", "xm")]: {
+      width: "300px",
+      height: "200px",
+    },
   },
 }));
 
@@ -184,7 +200,8 @@ const HeroItem = ({ movie }) => {
             <div className={classes.trailer}>
               <iframe
                 title="trailer"
-                allowfullscreen
+                width="100%"
+                height="100%"
                 src={`https://www.youtube.com/embed/${video}`}
               ></iframe>
             </div>
