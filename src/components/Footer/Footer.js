@@ -9,7 +9,8 @@ import { useSelector } from "react-redux";
 const useStyles = makeStyles((theme) => ({
   layout: {
     marginTop: "4rem",
-    backgroundImage: `url(.${FooterBg})`,
+    // backgroundImage: `url(.${FooterBg})`,
+    backgroundImage: `url(https://res.cloudinary.com/binh130490/image/upload/v1645531552/footer-bg_pgorra.jpg)`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     textAlign: "left",

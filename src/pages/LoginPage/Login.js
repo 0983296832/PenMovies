@@ -23,7 +23,7 @@ const Login = () => {
       sx={{
         height: "100vh",
         width: "100vw",
-        backgroundImage: `url(.${bg})`,
+        backgroundImage: `url(https://res.cloudinary.com/binh130490/image/upload/v1645531552/footer-bg_pgorra.jpg)`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
