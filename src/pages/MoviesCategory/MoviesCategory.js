@@ -88,7 +88,6 @@ const MoviesCategory = () => {
 
   useEffect(() => {
     const getMovieSearch = async () => {
-      let response = null;
       const params = {
         query: keyword,
         page: pages,

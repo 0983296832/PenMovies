@@ -95,16 +95,16 @@ const Footer = () => {
             <Grid item md={4} xs={12}>
               <Stack spacing={2} direction="column">
                 <div className={classes.link}>
-                  <Link href="#" className={classes.item}>
+                  <Link to="/" className={classes.item}>
                     Home
                   </Link>
-                  <Link href="#" className={classes.item}>
+                  <Link to="/" className={classes.item}>
                     Contact us
                   </Link>
-                  <Link href="#" className={classes.item}>
+                  <Link to="/" className={classes.item}>
                     Term of services
                   </Link>
-                  <Link href="#" className={classes.item}>
+                  <Link to="/" className={classes.item}>
                     About us
                   </Link>
                 </div>
@@ -114,16 +114,16 @@ const Footer = () => {
               <Stack spacing={2} direction="column">
                 <div className={classes.display}>
                   <div className={classes.link}>
-                    <Link href="#" className={classes.item}>
+                    <Link to="/" className={classes.item}>
                       Live
                     </Link>
-                    <Link href="#" className={classes.item}>
+                    <Link to="/" className={classes.item}>
                       FAQ
                     </Link>
-                    <Link href="#" className={classes.item}>
+                    <Link to="/" className={classes.item}>
                       Premium
                     </Link>
-                    <Link href="#" className={classes.item}>
+                    <Link to="/" className={classes.item}>
                       Pravacy policy
                     </Link>
                   </div>
@@ -134,13 +134,13 @@ const Footer = () => {
               <Stack spacing={2} direction="column">
                 <div className={classes.display}>
                   <div className={classes.link}>
-                    <Link href="#" className={classes.item}>
+                    <Link to="/" className={classes.item}>
                       You must watch
                     </Link>
-                    <Link href="#" className={classes.item}>
+                    <Link to="/" className={classes.item}>
                       Recent release
                     </Link>
-                    <Link href="#" className={classes.item}>
+                    <Link to="/" className={classes.item}>
                       Top IMDB
                     </Link>
                   </div>

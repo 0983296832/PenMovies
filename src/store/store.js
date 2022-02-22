@@ -24,15 +24,13 @@ export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      serializableCheck: false,
+      // serializableCheck: {
+      //   ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      // },
     }),
-  // middleware: (getDefaultMiddleware) =>
-  //   getDefaultMiddleware({ serializableCheck: false }),
 });
 
-export let persistor = persistStore(store);
 // export const store = configureStore({
 //   reducer: {
 //     user: userReducer,
@@ -40,3 +38,5 @@ export let persistor = persistStore(store);
 //   middleware: (getDefaultMiddleware) =>
 //     getDefaultMiddleware({ serializableCheck: false }),
 // });
+
+export let persistor = persistStore(store);

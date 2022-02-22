@@ -11,7 +11,6 @@ const Login = () => {
   const user = useSelector((state) => state);
   useEffect(() => {
     user.displayName !== "" && navigate("/");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.displayName]);
   const dispatch = useDispatch();
 

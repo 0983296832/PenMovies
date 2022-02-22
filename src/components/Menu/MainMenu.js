@@ -156,7 +156,7 @@ function MainMenu() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const user = useSelector((state) => state);
-  console.log(user);
+
   const dispatch = useDispatch();
   const [indexActive, setIndexActive] = useState(1);
   const [show, setShow] = useState(false);
