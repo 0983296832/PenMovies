@@ -4,13 +4,14 @@ import { login } from "../../slice/userReducer";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import loginBtn from "../../assets/login-google.jpg";
-import bg from "../../assets/footer-bg.jpg";
 
 const Login = () => {
   let navigate = useNavigate();
-  const user = useSelector((state) => state.user);
+
+  const user = useSelector((state) => state);
   useEffect(() => {
     user.displayName !== "" && navigate("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.displayName]);
   const dispatch = useDispatch();
 
@@ -28,7 +29,7 @@ const Login = () => {
       }}
     >
       <Button variant="contained" onClick={() => dispatch(login())}>
-        <img src={loginBtn} atl="" width="30px" height="30px" />
+        <img src={loginBtn} alt="" width="30px" height="30px" />
         <span style={{ width: "30px" }}></span>
         Login with Google
       </Button>

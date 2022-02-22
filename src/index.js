@@ -5,13 +5,15 @@ import App from "./App";
 import { ThemeProvider } from "@mui/styles";
 import { theme } from "./theme";
 import { Provider } from "react-redux";
-import { store } from "./store/store";
-
+import { store, persistor } from "./store/store";
+import { PersistGate } from "redux-persist/integration/react";
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <App />
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
       </Provider>
     </ThemeProvider>
   </React.StrictMode>,

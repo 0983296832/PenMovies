@@ -155,7 +155,8 @@ function MainMenu() {
   const classes = useStyles({});
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state);
+  console.log(user);
   const dispatch = useDispatch();
   const [indexActive, setIndexActive] = useState(1);
   const [show, setShow] = useState(false);
@@ -184,7 +185,7 @@ function MainMenu() {
     >
       <Toolbar className={classes.toolBar}>
         <div className={classes.logo}>
-          <img src={Logo} atl="PenMovie" className={classes.imgLogo} />
+          <img src={Logo} alt="PenMovie" className={classes.imgLogo} />
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <Typography
               variant="h6"

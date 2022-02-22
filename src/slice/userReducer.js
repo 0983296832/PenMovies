@@ -16,6 +16,7 @@ export const login = createAsyncThunk("login/getUser", async () => {
     progress: undefined,
     theme: "dark",
   });
+
   return result.user;
 });
 export const logout = createAsyncThunk("logout", () => {

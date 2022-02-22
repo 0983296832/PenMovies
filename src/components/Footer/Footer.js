@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Footer = () => {
   const classes = useStyles({}, FooterBg);
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state);
   return (
     <div
       className={classes.layout}
@@ -76,7 +76,7 @@ const Footer = () => {
       <Container maxWidth="md">
         <Stack>
           <div className={classes.logo}>
-            <img src={Logo} atl="Pen Movie" className={classes.imgLogo} />
+            <img src={Logo} alt="Pen Movie" className={classes.imgLogo} />
             <Link to="/" style={{ textDecoration: "none", color: "white" }}>
               <Typography
                 variant="h6"
@@ -95,18 +95,18 @@ const Footer = () => {
             <Grid item md={4} xs={12}>
               <Stack spacing={2} direction="column">
                 <div className={classes.link}>
-                  <a href="#" className={classes.item}>
+                  <Link href="#" className={classes.item}>
                     Home
-                  </a>
-                  <a href="#" className={classes.item}>
+                  </Link>
+                  <Link href="#" className={classes.item}>
                     Contact us
-                  </a>
-                  <a href="#" className={classes.item}>
+                  </Link>
+                  <Link href="#" className={classes.item}>
                     Term of services
-                  </a>
-                  <a href="#" className={classes.item}>
+                  </Link>
+                  <Link href="#" className={classes.item}>
                     About us
-                  </a>
+                  </Link>
                 </div>
               </Stack>
             </Grid>
@@ -114,18 +114,18 @@ const Footer = () => {
               <Stack spacing={2} direction="column">
                 <div className={classes.display}>
                   <div className={classes.link}>
-                    <a href="#" className={classes.item}>
+                    <Link href="#" className={classes.item}>
                       Live
-                    </a>
-                    <a href="#" className={classes.item}>
+                    </Link>
+                    <Link href="#" className={classes.item}>
                       FAQ
-                    </a>
-                    <a href="#" className={classes.item}>
+                    </Link>
+                    <Link href="#" className={classes.item}>
                       Premium
-                    </a>
-                    <a href="#" className={classes.item}>
+                    </Link>
+                    <Link href="#" className={classes.item}>
                       Pravacy policy
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </Stack>
@@ -134,15 +134,15 @@ const Footer = () => {
               <Stack spacing={2} direction="column">
                 <div className={classes.display}>
                   <div className={classes.link}>
-                    <a href="#" className={classes.item}>
+                    <Link href="#" className={classes.item}>
                       You must watch
-                    </a>
-                    <a href="#" className={classes.item}>
+                    </Link>
+                    <Link href="#" className={classes.item}>
                       Recent release
-                    </a>
-                    <a href="#" className={classes.item}>
+                    </Link>
+                    <Link href="#" className={classes.item}>
                       Top IMDB
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </Stack>
