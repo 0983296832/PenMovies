@@ -7,7 +7,7 @@ export const login = createAsyncThunk("login/getUser", async () => {
   const provider = new GoogleAuthProvider();
   const result = await signInWithPopup(auth, provider);
   toast.success("🦄 Login successfully!", {
-    position: "bottom-right",
+    position: "top-right",
     autoClose: 3000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -22,7 +22,7 @@ export const logout = createAsyncThunk("logout", () => {
   console.log("logout");
   signOut(auth).then(() => {
     toast.success("🦄 Logout successfully!", {
-      position: "bottom-right",
+      position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,

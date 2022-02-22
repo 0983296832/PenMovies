@@ -7,6 +7,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../slice/userReducer";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { makeStyles } from "@mui/styles";
 
@@ -283,6 +284,7 @@ function MainMenu() {
             </div>
           </Box>
         </Modal>
+        <ToastContainer />
       </div>
     </AppBar>
   );
