@@ -1,5 +1,5 @@
 import { makeStyles } from "@mui/styles";
-import { Container, Grid, Stack, Typography } from "@mui/material";
+import { Container, Divider, Grid, Stack, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
 import { useRef, useEffect, useState } from "react";
@@ -52,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("lg")]: {
       width: "350px",
     },
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
   },
   img: {
     objectFit: "cover",
@@ -63,6 +66,49 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     gap: " 0 0 0 20px",
+  },
+  castGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(5,1fr)",
+    [theme.breakpoints.up("mg")]: {
+      gridTemplateColumns: "repeat(5,max-content)",
+      gap: "1rem",
+    },
+    [theme.breakpoints.between("md", "mg")]: {
+      gridTemplateColumns: "repeat(4,max-content)",
+      gap: "1rem",
+    },
+    [theme.breakpoints.between("sm", "md")]: {
+      gridTemplateColumns: "repeat(5,max-content)",
+      gap: "1rem",
+    },
+    [theme.breakpoints.between("xm", "sm")]: {
+      gridTemplateColumns: "repeat(3,max-content)",
+      gap: "1rem",
+    },
+    [theme.breakpoints.between("xs", "xm")]: {
+      gridTemplateColumns: "repeat(2,max-content)",
+      gap: "1rem",
+    },
+  },
+  genresGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(5,1fr)",
+    marginBottom: "2rem",
+    [theme.breakpoints.up("sm")]: {
+      gridTemplateColumns: "repeat(5,max-content)",
+      gap: "1rem",
+      marginBottom: "2rem",
+    },
+    [theme.breakpoints.between("xm", "sm")]: {
+      gridTemplateColumns: "repeat(3,max-content)",
+      gap: "1rem",
+      marginBottom: "2rem",
+    },
+    [theme.breakpoints.between("xs", "xm")]: {
+      gridTemplateColumns: "repeat(2,max-content)",
+      gap: "1rem",
+    },
   },
 }));
 
@@ -101,12 +147,20 @@ const DetailContainer = ({ category, id }) => {
     getDetail();
   }, [category, id]);
 
+  useEffect(() => {
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      console.log(true);
+    } else {
+      console.log(false);
+    }
+  });
+
   return (
     <>
       <div className={classes.baner} ref={bg}></div>
       <Container maxWidth="xl" className={classes.container}>
         <Grid container spacing={10}>
-          <Grid item lg={4} style={{ zIndex: "10" }}>
+          <Grid item lg={5} md={5} style={{ zIndex: "10" }}>
             <div className={classes.imageContain}>
               <img
                 src={movie ? apiConfig.originalImage(movie.poster_path) : ""}
@@ -116,24 +170,27 @@ const DetailContainer = ({ category, id }) => {
             </div>
           </Grid>
 
-          <Grid item lg={8} className={classes.gridItemLeft} p={2}>
+          <Grid item lg={7} md={7} className={classes.gridItemLeft} p={2}>
             <Typography
               variant="h1"
               className={classes.title}
               gutterBottom
-              sx={{ fontWeight: 700, fontSize: "4.1rem" }}
+              sx={{ fontWeight: 700 }}
+              fontSize={{
+                xs: 30,
+              }}
             >
               {movie ? movie.original_title : null}
             </Typography>
-            <Stack spacing={2} direction="row" sx={{ paddingBottom: "2rem" }}>
+            <div className={classes.genresGrid}>
               {movie
                 ? movie?.genres?.map((item, index) => (
-                    <CustomButtonBorder key={index}>
-                      {item.name}
-                    </CustomButtonBorder>
+                    <div key={index}>
+                      <CustomButtonBorder>{item.name}</CustomButtonBorder>
+                    </div>
                   ))
                 : null}
-            </Stack>
+            </div>
             <Typography
               variant="body1"
               gutterBottom
@@ -142,12 +199,17 @@ const DetailContainer = ({ category, id }) => {
                 paddingBottom: "2rem",
                 fontFamily: "Montserrat",
               }}
+              maxWidth={{
+                lg: "80%",
+                md: "60%",
+                xs: "300px",
+              }}
               className={classes.overview}
             >
               {movie ? movie.overview : null}
             </Typography>
-            <Stack direction="row" spacing={1.5}>
-              {casts?.map((cast) => {
+            <div className={classes.castGrid}>
+              {casts?.map((cast, index) => {
                 return (
                   <div className={classes.castcontainer} key={cast.id}>
                     <img
@@ -156,13 +218,19 @@ const DetailContainer = ({ category, id }) => {
                       width="96px"
                       style={{ marginBottom: "15px" }}
                     />
-                    <Typography variant="p" sx={{ maxWidth: " 96px" }}>
+                    <Typography
+                      variant="p"
+                      sx={{ maxWidth: " 96px" }}
+                      // fontSize={{
+                      //   xs: 10,
+                      // }}
+                    >
                       {cast ? cast.name : null}
                     </Typography>
                   </div>
                 );
               })}
-            </Stack>
+            </div>
           </Grid>
         </Grid>
       </Container>

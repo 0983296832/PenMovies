@@ -15,22 +15,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-  containerLarge: {
-    width: "240px",
-    height: "auto",
-    marginTop: "1rem",
-    [theme.breakpoints.down("lg")]: {
-      width: "300px",
-    },
-    [theme.breakpoints.up("sm")]: {
-      marginRight: "2rem",
-    },
-    "&:hover ": {
-      "& $name": {
-        color: "#ff0000",
-      },
-    },
-  },
+
   imgcontainer: {
     position: "relative",
     "&:hover ": {
@@ -69,20 +54,43 @@ const useStyles = makeStyles((theme) => ({
       cursor: "pointer",
     },
   },
+  containerLarge: {
+    width: "240px",
+    height: "auto",
+    marginTop: "1rem",
+    [theme.breakpoints.down("lg")]: {
+      width: "300px",
+    },
+
+    [theme.breakpoints.up("sm")]: {
+      marginRight: "2rem",
+    },
+    "&:hover ": {
+      "& $name": {
+        color: "#ff0000",
+      },
+    },
+  },
   imageLarge: {
     objectFit: "cover",
     borderRadius: "30px",
     width: "240px",
     height: "360px",
     [theme.breakpoints.down("md")]: {
-      width: "270px",
+      width: "300px",
       height: "400px",
     },
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.down("xl")]: {
       width: "240px",
       height: "360px",
       marginRight: "2rem",
     },
+    [theme.breakpoints.down("lg")]: {
+      width: "300px",
+      height: "400px",
+      marginRight: "2rem",
+    },
+
     "&:hover": {
       cursor: "pointer",
     },
