@@ -4,6 +4,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../slice/userReducer";
+import { ToastContainer } from "react-toastify";
 
 import { makeStyles } from "@mui/styles";
 
@@ -75,6 +78,9 @@ const useStyles = makeStyles((theme) => ({
       bottom: "45px",
       transformOrigin: "center",
       transition: " all .25s ease",
+      [theme.breakpoints.down("md")]: {
+        bottom: "-6px",
+      },
     },
     "&:hover": {
       color: "#ff0000",
@@ -97,6 +103,9 @@ const useStyles = makeStyles((theme) => ({
       bottom: "45px",
       left: "50%",
       transform: "translateX(-50%)",
+      [theme.breakpoints.down("md")]: {
+        bottom: "-6px",
+      },
     },
   },
   menuBar: {
@@ -108,13 +117,21 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
-  modal: {
+  box: {
     position: "absolute",
     width: "100%",
     height: "100%",
     border: "none",
     outline: "none",
     display: "flex",
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+  },
+  modal: {
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
   },
   linkList: {
     display: "flex",
@@ -124,15 +141,28 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 auto",
     gap: "2rem",
   },
+  close: {
+    color: "white",
+    fontSize: "4rem",
+    cursor: "pointer",
+    "&:hover": {
+      color: "#ff0000",
+    },
+  },
 }));
 
 function MainMenu() {
   const classes = useStyles({});
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const [show, setShow] = useState(false);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const [indexActive, setIndexActive] = useState(1);
+  const handleClose = (index) => {
+    setIndexActive(index);
+    setOpen(false);
+  };
+  const [show, setShow] = useState(false);
 
   window.addEventListener("scroll", () => {
     window.scrollY > 150 ? setShow(true) : setShow(false);
@@ -170,7 +200,10 @@ function MainMenu() {
           </Link>
         </div>
 
-        <div className={classes.link}>
+        <div
+          className={classes.link}
+          style={{ display: `${user.displayName === "" ? "none" : ""}` }}
+        >
           <Link
             to="/"
             className={`${classes.item} ${indexActive === 1 && classes.active}`}
@@ -192,30 +225,59 @@ function MainMenu() {
           >
             TV Series
           </Link>
+          <Link
+            to="/login"
+            className={classes.item}
+            onClick={() => dispatch(logout())}
+          >
+            Log Out
+          </Link>
         </div>
         <div className={classes.menuBar}>
           <MenuIcon onClick={handleOpen} style={{ fontSize: "2rem" }} />
         </div>
       </Toolbar>
       <div>
-        <Modal open={open}>
-          <Box className={classes.modal}>
+        <Modal open={open} className={classes.modal}>
+          <Box className={classes.box}>
             <div className={classes.linkList}>
-              <Link to="/" className={classes.item} onClick={handleClose}>
+              <Link
+                to="/"
+                className={`${classes.item} ${
+                  indexActive === 1 && classes.active
+                }`}
+                onClick={() => handleClose(1)}
+              >
                 Home
               </Link>
-              <Link to="/movie" className={classes.item} onClick={handleClose}>
+              <Link
+                to="/movie"
+                className={`${classes.item} ${
+                  indexActive === 2 && classes.active
+                }`}
+                onClick={() => handleClose(1)}
+              >
                 Movies
               </Link>
-              <Link to="/tv" className={classes.item} onClick={handleClose}>
+              <Link
+                to="/tv"
+                className={`${classes.item} ${
+                  indexActive === 3 && classes.active
+                }`}
+                onClick={() => handleClose(1)}
+              >
                 TV Series
               </Link>
+              <Link
+                to="/login"
+                className={classes.item}
+                onClick={() => dispatch(logout())}
+              >
+                Log Out
+              </Link>
               <CloseIcon
-                style={{
-                  color: "white",
-                  fontSize: "2rem",
-                  "&:hover": { cursor: "poiter" },
-                }}
+                className={classes.close}
+                style={{ fontSize: "2rem" }}
                 onClick={handleClose}
               />
             </div>

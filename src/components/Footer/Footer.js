@@ -4,6 +4,7 @@ import { makeStyles } from "@mui/styles";
 import Logo from "../../assets/tmovie.png";
 import FooterBg from "../../assets/footer-bg.jpg";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   layout: {
@@ -61,8 +62,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Footer = () => {
   const classes = useStyles({}, FooterBg);
+  const user = useSelector((state) => state.user);
   return (
-    <div className={classes.layout}>
+    <div
+      className={classes.layout}
+      style={{ display: `${user.displayName === "" ? "none" : ""}` }}
+    >
       <Container maxWidth="md">
         <Stack>
           <div className={classes.logo}>

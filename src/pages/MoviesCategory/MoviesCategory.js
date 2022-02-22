@@ -84,6 +84,7 @@ const MoviesCategory = () => {
     null
   );
   const [keyWords, setKeyWords] = useState("");
+  let navigate = useNavigate();
 
   useEffect(() => {
     const getMovieSearch = async () => {
@@ -99,8 +100,6 @@ const MoviesCategory = () => {
       getMovieSearch();
     }
   }, [keyword]);
-  console.log(searchMovies);
-  let navigate = useNavigate();
 
   const loadMore = () => {
     setPages((prev) => prev + 1);
