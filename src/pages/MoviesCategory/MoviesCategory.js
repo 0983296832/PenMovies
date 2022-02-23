@@ -85,7 +85,9 @@ const MoviesCategory = () => {
   );
   const [keyWords, setKeyWords] = useState("");
   let navigate = useNavigate();
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     const getMovieSearch = async () => {
       const params = {
@@ -98,6 +100,7 @@ const MoviesCategory = () => {
     if (keyword !== undefined) {
       getMovieSearch();
     }
+    window.scrollTo(0, 0);
   }, [keyword]);
 
   const loadMore = () => {

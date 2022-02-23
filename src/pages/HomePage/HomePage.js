@@ -5,7 +5,7 @@ import { movieType, tvType } from "../../api/tmdbApi";
 
 const HomePage = () => {
   useEffect(() => {
-    window.scroll(0, 0);
+    window.scrollTo(0, 0);
   }, []);
   return (
     <>

@@ -37,8 +37,6 @@ function Hero() {
         grabCursor={true}
         spaceBetween={0}
         slidesPerView={1}
-        // onSlideChange={() => console.log("slide change")}
-        // onSwiper={(swiper) => console.log("1")}
         className={classes.container}
       >
         {moviesPopular?.map((movie) => {

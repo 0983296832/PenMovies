@@ -5,6 +5,9 @@ import { styled } from "@mui/material/styles";
 import { useRef, useEffect, useState } from "react";
 import apiConfig from "../../api/apiConfig";
 import tmdbApi from "../../api/tmdbApi";
+import Grow from "@mui/material/Grow";
+import { css } from "@emotion/react";
+
 
 const useStyles = makeStyles((theme) => ({
   baner: {
@@ -161,13 +164,15 @@ const DetailContainer = ({ category, id }) => {
       <Container maxWidth="xl" className={classes.container}>
         <Grid container spacing={10}>
           <Grid item lg={5} md={5} style={{ zIndex: "10" }}>
-            <div className={classes.imageContain}>
-              <img
-                src={movie ? apiConfig.originalImage(movie.poster_path) : ""}
-                className={classes.img}
-                alt="The King's Man"
-              />
-            </div>
+            <Grow in={true} {...(true ? { timeout: 700 } : {})}>
+              <div className={classes.imageContain}>
+                <img
+                  src={apiConfig.originalImage(movie?.poster_path)}
+                  className={classes.img}
+                  alt="The King's Man"
+                />
+              </div>
+            </Grow>
           </Grid>
 
           <Grid item lg={7} md={7} className={classes.gridItemLeft} p={2}>

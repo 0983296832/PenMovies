@@ -6,6 +6,8 @@ import ButtonStyle from "../Button/Button";
 import Backdrop from "@mui/material/Backdrop";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
+import Grow from "@mui/material/Grow";
+import Slide from "@mui/material/Slide";
 
 import tmdbApi, { category } from "../../api/tmdbApi";
 
@@ -103,6 +105,7 @@ const HeroItem = ({ movie }) => {
   const handleClose = () => setOpen(false);
   const [video, setVideo] = useState();
   const bgRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const getVideos = async () => {
@@ -115,7 +118,7 @@ const HeroItem = ({ movie }) => {
 
   return (
     <div className={classes.container} ref={bgRef}>
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" ref={containerRef}>
         <Grid container spacing={6}>
           <Grid
             item
@@ -125,61 +128,84 @@ const HeroItem = ({ movie }) => {
             sm={8}
             md={8}
           >
-            <Typography
-              variant="h1"
-              className={classes.title}
-              gutterBottom
-              sx={{
-                fontWeight: 700,
-                marginTop: "5rem",
-                fontFamily: "Montserrat",
-              }}
-              fontSize={{
-                xl: 130,
-                lg: 100,
-                md: 100,
-                sm: 70,
-                xs: 50,
-              }}
+            <Slide
+              direction="down"
+              in={true}
+              container={containerRef.current}
+              {...(true ? { timeout: 700 } : {})}
             >
-              {movie.original_title}
-            </Typography>
-            <Typography
-              variant="body1"
-              gutterBottom
-              sx={{
-                fontWeight: 600,
-                paddingBottom: "2rem",
-                fontFamily: "Montserrat",
-              }}
-              fontSize={{
-                xl: 30,
-                lg: 30,
-                md: 30,
-                sm: 20,
-                xs: 15,
-              }}
-              className={classes.overview}
+              <Typography
+                variant="h1"
+                className={classes.title}
+                gutterBottom
+                sx={{
+                  fontWeight: 700,
+                  marginTop: "5rem",
+                  fontFamily: "Montserrat",
+                }}
+                fontSize={{
+                  xl: 130,
+                  lg: 100,
+                  md: 100,
+                  sm: 70,
+                  xs: 50,
+                }}
+              >
+                {movie.original_title}
+              </Typography>
+            </Slide>
+            <Slide
+              direction="down"
+              in={true}
+              container={containerRef.current}
+              {...(true ? { timeout: 700 } : {})}
             >
-              {movie.overview}
-            </Typography>
-            <Stack spacing={2} direction="row">
-              <ButtonStyle name="Watch Now" id={movie.id} largeBtn="true" />
-              <ButtonStyle
-                name="Watch Trailer"
-                handleOpen={handleOpen}
-                largeBtn="true"
-              />
-            </Stack>
+              <Typography
+                variant="body1"
+                gutterBottom
+                sx={{
+                  fontWeight: 600,
+                  paddingBottom: "2rem",
+                  fontFamily: "Montserrat",
+                }}
+                fontSize={{
+                  xl: 20,
+                  lg: 20,
+                  md: 20,
+                  sm: 17,
+                  xs: 15,
+                }}
+                className={classes.overview}
+              >
+                {movie.overview}
+              </Typography>
+            </Slide>
+            <Slide
+              direction="down"
+              in={true}
+              container={containerRef.current}
+              {...(true ? { timeout: 700 } : {})}
+            >
+              <Stack spacing={2} direction="row">
+                <ButtonStyle name="Watch Now" id={movie.id} largeBtn="true" />
+                <ButtonStyle
+                  name="Watch Trailer"
+                  handleOpen={handleOpen}
+                  largeBtn="true"
+                />
+              </Stack>
+            </Slide>
           </Grid>
           <Grid item lg={6} style={{ zIndex: "10" }}>
-            <div className={classes.imageContain}>
-              <img
-                src={apiConfig.originalImage(movie.poster_path)}
-                className={classes.img}
-                alt={movie.original_title}
-              />
-            </div>
+            <Grow in={true} {...(true ? { timeout: 700 } : {})}>
+              <div className={classes.imageContain}>
+                <img
+                  src={apiConfig.originalImage(movie.poster_path)}
+                  className={classes.img}
+                  alt={movie.original_title}
+                />
+              </div>
+            </Grow>
           </Grid>
         </Grid>
       </Container>

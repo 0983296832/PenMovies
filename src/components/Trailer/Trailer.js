@@ -2,6 +2,14 @@ import { Container, Typography } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import tmdbApi from "../../api/tmdbApi";
 import { makeStyles } from "@mui/styles";
+import { css } from "@emotion/react";
+import PacmanLoader from "react-spinners/PacmanLoader";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -29,7 +37,14 @@ const Trailer = ({ category, id }) => {
   return (
     <div className={classes.container}>
       {loading ? (
-        <div className={classes.container}>Loading...</div>
+        <div className={classes.container}>
+          <PacmanLoader
+            color="#50E3C2"
+            // loading={loading}
+            css={override}
+            size={20}
+          />
+        </div>
       ) : (
         <>
           <Container maxWidth="xl">

@@ -5,8 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import loginBtn from "../../assets/login-google.jpg";
 
+
 const Login = () => {
   let navigate = useNavigate();
+
+
 
   const user = useSelector((state) => state);
   useEffect(() => {
@@ -33,7 +36,7 @@ const Login = () => {
         Login with Google
       </Button>
     </Stack>
-    // </div>
+    
   );
 };
 
