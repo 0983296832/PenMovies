@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { makeStyles } from "@mui/styles";
 
-import Logo from "../../assets/tmovie.png";
+import penLogo from "../../assets/penLogo.png";
 import { Link } from "react-router-dom";
 import { Box, Modal } from "@mui/material";
 
@@ -185,7 +185,7 @@ function MainMenu() {
     >
       <Toolbar className={classes.toolBar}>
         <div className={classes.logo}>
-          <img src={Logo} alt="PenMovie" className={classes.imgLogo} />
+          <img src={penLogo} alt="PenMovie" className={classes.imgLogo} />
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
             <Typography
               variant="h6"

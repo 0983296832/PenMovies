@@ -1,7 +1,7 @@
 import { Container, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import Logo from "../../assets/tmovie.png";
+import penLogo from "../../assets/penLogo.png";
 import FooterBg from "../../assets/footer-bg.jpg";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -28,9 +28,10 @@ const useStyles = makeStyles((theme) => ({
     flex: "1",
   },
   imgLogo: {
-    height: "3.5rem",
     width: "auto",
+    height: "4rem",
     marginRight: "7px",
+    marginTop: "5px",
     "&:hover": {
       cursor: "pointer",
     },
@@ -76,7 +77,7 @@ const Footer = () => {
       <Container maxWidth="md">
         <Stack>
           <div className={classes.logo}>
-            <img src={Logo} alt="Pen Movie" className={classes.imgLogo} />
+            <img src={penLogo} alt="Pen Movie" className={classes.imgLogo} />
             <Link to="/" style={{ textDecoration: "none", color: "white" }}>
               <Typography
                 variant="h6"
