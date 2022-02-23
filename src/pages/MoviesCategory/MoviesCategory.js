@@ -139,6 +139,22 @@ const MoviesCategory = () => {
     }
   };
 
+  useEffect(() => {
+    const enterEvent = (e) => {
+      e.preventDefault();
+      if (e.keyCode === 13) {
+        setKeyWords("");
+        if (keyWords !== "") {
+          navigate(`/${category}/search/${keyWords}`);
+        }
+      }
+    };
+    document.addEventListener("keyup", enterEvent);
+    return () => {
+      document.removeEventListener("keyup", enterEvent);
+    };
+  }, [keyword, handleSearch]);
+
   return (
     <div>
       <div className={classes.baner}></div>
@@ -157,26 +173,24 @@ const MoviesCategory = () => {
             {category === "movie" ? " movie" : "tv Series"}
           </Typography>
           <Stack direction="row" spacing={2}>
-            <form>
-              <div className={classes.searchContainer}>
-                <input
-                  type="text"
-                  placeholder="Type something ......."
-                  id="search"
-                  name="search"
-                  className={classes.search}
-                  onChange={(e) => setKeyWords(e.target.value)}
-                  value={keyWords}
+            <div className={classes.searchContainer}>
+              <input
+                type="text"
+                placeholder="Type something ......."
+                id="search"
+                name="search"
+                className={classes.search}
+                onChange={(e) => setKeyWords(e.target.value)}
+                value={keyWords}
+              />
+              <div className={classes.searchBtn}>
+                <ButtonStyle
+                  name="Search"
+                  large="false"
+                  handleSearch={handleSearch}
                 />
-                <div className={classes.searchBtn}>
-                  <ButtonStyle
-                    name="Search"
-                    large="false"
-                    handleSearch={handleSearch}
-                  />
-                </div>
               </div>
-            </form>
+            </div>
           </Stack>
           <MoviesGird
             movies={keyword === undefined ? data : searchMovies}
