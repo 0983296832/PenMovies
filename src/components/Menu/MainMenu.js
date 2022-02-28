@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -170,9 +170,15 @@ function MainMenu() {
     dispatch(logout());
   };
 
-  window.addEventListener("scroll", () => {
-    window.scrollY > 150 ? setShow(true) : setShow(false);
-  });
+  useEffect(() => {
+    const scrollHandler = () => {
+      window.scrollY > 150 ? setShow(true) : setShow(false);
+    };
+    window.addEventListener("scroll", scrollHandler);
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+    };
+  }, []);
 
   return (
     <AppBar

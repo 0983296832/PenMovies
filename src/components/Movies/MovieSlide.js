@@ -96,4 +96,4 @@ const MovieSlide = ({ name, type, getType, id }) => {
   );
 };
 
-export default MovieSlide;
+export default React.memo(MovieSlide);

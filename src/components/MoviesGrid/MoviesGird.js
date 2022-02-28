@@ -32,4 +32,4 @@ const MoviesGird = ({ movies, loading, category }) => {
   );
 };
 
-export default MoviesGird;
+export default React.memo(MoviesGird);

@@ -141,4 +141,4 @@ const MovieItem = ({ movie, category, largeItem }) => {
   );
 };
 
-export default MovieItem;
+export default React.memo(MovieItem);
