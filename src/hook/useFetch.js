@@ -4,6 +4,7 @@ import tmdbApi from "../api/tmdbApi";
 const useFetch = (getType, type, id) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [totalPagesCatalog, setTotalPagesCatalog] = useState();
 
   let response;
 
@@ -25,12 +26,13 @@ const useFetch = (getType, type, id) => {
         console.log(e);
       }
       setData(response.results);
+      setTotalPagesCatalog(response.total_pages);
       setLoading(false);
     };
 
     data && getMovies(type);
   }, [getType]);
-  return { data, loading, setData };
+  return { data, loading, setData, totalPagesCatalog };
 };
 
 export default useFetch;

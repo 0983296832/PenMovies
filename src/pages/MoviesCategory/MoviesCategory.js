@@ -77,8 +77,9 @@ const MoviesCategory = () => {
   const classes = useStyles({});
   const { category, keyword } = useParams();
   const [pages, setPages] = useState(1);
+  const [totalPages, setTotalPages] = useState();
   const [searchMovies, setSearchMovies] = useState();
-  const { data, loading, setData } = useFetch(
+  const { data, loading, setData, totalPagesCatalog } = useFetch(
     category,
     category === "movie" ? "upcoming" : "top_rated",
     null
@@ -96,12 +97,20 @@ const MoviesCategory = () => {
       };
       const res = await tmdbApi.search(category, { params });
       setSearchMovies(res.results);
+      setTotalPages(res.total_pages);
     };
     if (keyword !== undefined) {
       getMovieSearch();
     }
     window.scrollTo(0, 0);
   }, [keyword]);
+
+  useEffect(() => {
+    if (keyword === undefined) {
+      setTotalPages(totalPagesCatalog);
+    }
+  });
+  console.log(keyword, totalPages);
 
   const loadMore = () => {
     setPages((prev) => prev + 1);
@@ -200,12 +209,14 @@ const MoviesCategory = () => {
           />
         </div>
         <Stack spacing={2} alignItems="center" sx={{ marginTop: "2rem" }}>
-          <ButtonStyle
-            name="Load More"
-            largeBtn="false"
-            loadMore={loadMore}
-            getMore={getMore}
-          />
+          {pages < totalPages && (
+            <ButtonStyle
+              name="Load More"
+              largeBtn="false"
+              loadMore={loadMore}
+              getMore={getMore}
+            />
+          )}
         </Stack>
       </Container>
     </div>
