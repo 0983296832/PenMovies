@@ -6,7 +6,7 @@ import HomePage from "../pages/HomePage/HomePage";
 import DetailPage from "../pages/DetailPage/DetailPage";
 import MoviesCategory from "../pages/MoviesCategory/MoviesCategory";
 import Login from "../pages/LoginPage/Login";
-import PrivateRoute from "./PrivateRoute";
+import PrivateRoute from "../guards/PrivateRoute";
 
 const RootRoute = () => {
   return (

@@ -12,7 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { makeStyles } from "@mui/styles";
 
 import penLogo from "../../assets/penLogo.png";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Box, Modal } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
@@ -156,14 +156,9 @@ function MainMenu() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const user = useSelector((state) => state);
-
   const dispatch = useDispatch();
-  const [indexActive, setIndexActive] = useState(1);
   const [show, setShow] = useState(false);
-  const handleClose = (index) => {
-    setIndexActive(index);
-    setOpen(false);
-  };
+  let location = useLocation();
 
   const handleLogOut = () => {
     setOpen(false);
@@ -218,22 +213,25 @@ function MainMenu() {
         >
           <Link
             to="/"
-            className={`${classes.item} ${indexActive === 1 && classes.active}`}
-            onClick={() => setIndexActive(1)}
+            className={`${classes.item} ${
+              location.pathname === "/" && classes.active
+            }`}
           >
             Home
           </Link>
           <Link
             to="/movie"
-            className={`${classes.item} ${indexActive === 2 && classes.active}`}
-            onClick={() => setIndexActive(2)}
+            className={`${classes.item} ${
+              location.pathname === "/movie" && classes.active
+            }`}
           >
             Movies
           </Link>
           <Link
             to="/tv"
-            className={`${classes.item} ${indexActive === 3 && classes.active}`}
-            onClick={() => setIndexActive(3)}
+            className={`${classes.item} ${
+              location.pathname === "/tv" && classes.active
+            }`}
           >
             TV Series
           </Link>
@@ -259,27 +257,27 @@ function MainMenu() {
               <Link
                 to="/"
                 className={`${classes.item} ${
-                  indexActive === 1 && classes.active
+                  location.pathname === "/" && classes.active
                 }`}
-                onClick={() => handleClose(1)}
+                onClick={() => setOpen(false)}
               >
                 Home
               </Link>
               <Link
                 to="/movie"
                 className={`${classes.item} ${
-                  indexActive === 2 && classes.active
+                  location.pathname === "/movie" && classes.active
                 }`}
-                onClick={() => handleClose(1)}
+                onClick={() => setOpen(false)}
               >
                 Movies
               </Link>
               <Link
                 to="/tv"
                 className={`${classes.item} ${
-                  indexActive === 3 && classes.active
+                  location.pathname === "/tv" && classes.active
                 }`}
-                onClick={() => handleClose(1)}
+                onClick={() => setOpen(false)}
               >
                 TV Series
               </Link>
@@ -289,7 +287,7 @@ function MainMenu() {
               <CloseIcon
                 className={classes.close}
                 style={{ fontSize: "2rem" }}
-                onClick={handleClose}
+                onClick={() => setOpen(false)}
               />
             </div>
           </Box>
