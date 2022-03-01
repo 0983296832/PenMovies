@@ -222,7 +222,7 @@ function MainMenu() {
           <Link
             to="/movie"
             className={`${classes.item} ${
-              location.pathname === "/movie" && classes.active
+              location.pathname.includes("/movie") && classes.active
             }`}
           >
             Movies
@@ -230,7 +230,7 @@ function MainMenu() {
           <Link
             to="/tv"
             className={`${classes.item} ${
-              location.pathname === "/tv" && classes.active
+              location.pathname.includes("/tv") && classes.active
             }`}
           >
             TV Series
@@ -266,7 +266,7 @@ function MainMenu() {
               <Link
                 to="/movie"
                 className={`${classes.item} ${
-                  location.pathname === "/movie" && classes.active
+                  location.pathname.includes("/movie") && classes.active
                 }`}
                 onClick={() => setOpen(false)}
               >
@@ -275,7 +275,7 @@ function MainMenu() {
               <Link
                 to="/tv"
                 className={`${classes.item} ${
-                  location.pathname === "/tv" && classes.active
+                  location.pathname.includes("/tv") && classes.active
                 }`}
                 onClick={() => setOpen(false)}
               >
